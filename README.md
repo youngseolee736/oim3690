@@ -5,4 +5,4 @@ My name is Young Seo Lee. I am excited to build my websites!
 
 
 ## My Projects 
-- [My personal Website] (https://youngseolee736.github.io/)
+- [My personal Website](https://youngseolee736.github.io/)
