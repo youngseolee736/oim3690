@@ -1,0 +1,167 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --text: #223042;
+  --muted: #56657a;
+  --accent: #2f6fed;
+  --accent-dark: #1d4bb8;
+  --border: #d5deea;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #f4f7fb 0%, #edf3ff 100%);
+  color: var(--text);
+}
+
+header {
+  background: linear-gradient(135deg, #17324d 0%, #2f6fed 100%);
+  color: #fff;
+  padding: 32px 18px;
+}
+
+#main-title {
+  margin: 0 0 6px;
+  font-size: 2rem;
+}
+
+.page-intro {
+  margin: 0;
+  color: #eaf2ff;
+}
+
+nav {
+  margin-top: 14px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 12px;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #ffe482;
+  text-decoration: underline;
+}
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.page-card {
+  border-left: 4px solid var(--accent);
+}
+
+h1,
+h2 {
+  color: #17324d;
+}
+
+img {
+  border-radius: 10px;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  font-weight: 600;
+  color: var(--text);
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid rgba(47, 111, 237, 0.25);
+  border-color: var(--accent);
+}
+
+button {
+  width: fit-content;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button:hover {
+  background: var(--accent-dark);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 16px;
+}
+
+
+
+/* CSS I wrote by hand /* Testing purpose only. 
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+#main-title {
+  color: navy;
+}
+
+.page-card {
+  padding: 20px;
+  background-color: white;
+}
+
+a:hover {
+  color: blue;
+}
+

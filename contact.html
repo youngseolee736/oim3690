@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Young Seo Lee</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <h1 id="main-title">Contact Me</h1>
+    <p class="page-intro">Share a quick note or question using the form below.</p>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about-me.html">About Me</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-card">
+      <h2>Send a message</h2>
+      <p>Use the contact form below to reach out for class projects or general questions.</p>
+
+      <form action="https://oim.zhili.dev/echo/view" method="get">
+        <div>
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="Young Seo Lee" required>
+        </div>
+
+        <div>
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+
+        <div>
+          <label for="date">Preferred contact date</label>
+          <input id="date" name="date" type="date">
+        </div>
+
+        <div>
+          <label for="topic">Topic</label>
+          <select id="topic" name="topic">
+            <option value="project">Project question</option>
+            <option value="course">Course support</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell me a little about your request." required></textarea>
+        </div>
+
+        <button type="submit">Send message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>Created for OIM3690.</p>
+  </footer>
+</body>
+</html>
