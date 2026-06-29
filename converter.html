@@ -4,12 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Celsius Converter</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      max-width: 480px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 16px;
+    }
+
+    input {
+      font-size: 1rem;
+      margin-top: 6px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 10px 14px;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 18px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Celsius to Fahrenheit</h1>
+  <h1>Temperature Converter</h1>
+  <p>Type in either box to convert between Celsius and Fahrenheit.</p>
 
   <label for="celsius">Celsius:</label>
   <input id="celsius" type="number">
+
+  <label for="fahrenheit">Fahrenheit:</label>
+  <input id="fahrenheit" type="number">
+
   <button id="convert">Convert</button>
 
   <p id="result"></p>
@@ -19,16 +54,50 @@
       return celsius * 9 / 5 + 32;
     }
 
+    function toCelsius(fahrenheit) {
+      return (fahrenheit - 32) * 5 / 9;
+    }
+
+    function roundNumber(number) {
+      return Math.round(number * 10) / 10;
+    }
+
     const celsiusInput = document.querySelector("#celsius");
+    const fahrenheitInput = document.querySelector("#fahrenheit");
     const convertButton = document.querySelector("#convert");
     const result = document.querySelector("#result");
 
-    convertButton.addEventListener("click", function () {
+    function convertFromCelsius() {
+      if (celsiusInput.value === "") {
+        fahrenheitInput.value = "";
+        result.textContent = "";
+        return;
+      }
+
       const celsius = Number(celsiusInput.value);
       const fahrenheit = toFahrenheit(celsius);
 
-      result.textContent = celsius + " Celsius is " + fahrenheit + " Fahrenheit.";
-    });
+      fahrenheitInput.value = roundNumber(fahrenheit);
+      result.textContent = celsius + " Celsius is " + roundNumber(fahrenheit) + " Fahrenheit.";
+    }
+
+    function convertFromFahrenheit() {
+      if (fahrenheitInput.value === "") {
+        celsiusInput.value = "";
+        result.textContent = "";
+        return;
+      }
+
+      const fahrenheit = Number(fahrenheitInput.value);
+      const celsius = toCelsius(fahrenheit);
+
+      celsiusInput.value = roundNumber(celsius);
+      result.textContent = fahrenheit + " Fahrenheit is " + roundNumber(celsius) + " Celsius.";
+    }
+
+    convertButton.addEventListener("click", convertFromCelsius);
+    celsiusInput.addEventListener("input", convertFromCelsius);
+    fahrenheitInput.addEventListener("input", convertFromFahrenheit);
   </script>
 </body>
 </html>
