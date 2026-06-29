@@ -1,5 +1,6 @@
 const form = document.querySelector("#todo-form");
 const input = document.querySelector("#todo-input");
+const dueDateInput = document.querySelector("#due-date");
 const list = document.querySelector("#todo-list");
 const count = document.querySelector("#task-count");
 const emptyState = document.querySelector("#empty-state");
@@ -31,30 +32,41 @@ function renderTodos() {
     const checkbox = document.createElement("input");
     checkbox.className = "todo-check";
     checkbox.type = "checkbox";
-        checkbox.checked = todo.completed;
-        checkbox.setAttribute("aria-label", `Mark ${todo.text} as complete`);
-        checkbox.addEventListener("change", () => {
-          todo.completed = checkbox.checked;
-          saveTodos();
-          renderTodos();
-        });
+    checkbox.checked = todo.completed;
+    checkbox.setAttribute("aria-label", `Mark ${todo.text} as complete`);
+    checkbox.addEventListener("change", () => {
+      todo.completed = checkbox.checked;
+      item.classList.toggle("completed", todo.completed);
+      saveTodos();
+      updateCount();
+    });
+
+    const textWrap = document.createElement("div");
 
     const text = document.createElement("span");
     text.className = "todo-text";
     text.textContent = todo.text;
+    textWrap.append(text);
+
+    if (todo.dueDate) {
+      const dueDate = document.createElement("div");
+      dueDate.className = "todo-due";
+      dueDate.textContent = "Due: " + todo.dueDate;
+      textWrap.append(dueDate);
+    }
 
     const deleteButton = document.createElement("button");
     deleteButton.className = "delete-button";
     deleteButton.type = "button";
     deleteButton.textContent = "X";
-        deleteButton.setAttribute("aria-label", `Delete ${todo.text}`);
-        deleteButton.addEventListener("click", () => {
-          todos = todos.filter((itemToKeep) => itemToKeep.id !== todo.id);
-          saveTodos();
-          renderTodos();
-        });
+    deleteButton.setAttribute("aria-label", `Delete ${todo.text}`);
+    deleteButton.addEventListener("click", () => {
+      todos = todos.filter((itemToKeep) => itemToKeep.id !== todo.id);
+      saveTodos();
+      renderTodos();
+    });
 
-    item.append(checkbox, text, deleteButton);
+    item.append(checkbox, textWrap, deleteButton);
     list.append(item);
   });
 
@@ -73,11 +85,13 @@ form.addEventListener("submit", (event) => {
   todos.push({
     id: Date.now(),
     text,
+    dueDate: dueDateInput.value,
     completed: false
   });
 
   saveTodos();
   input.value = "";
+  dueDateInput.value = "";
   input.focus();
   renderTodos();
 });
