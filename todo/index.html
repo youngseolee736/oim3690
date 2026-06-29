@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --border: #d8dee8;
+      --done: #16a34a;
+      --danger: #dc2626;
+      --shadow: 0 18px 45px rgba(31, 41, 55, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.13), transparent 32rem),
+        linear-gradient(135deg, #eef2ff 0%, var(--bg) 52%, #ecfdf5 100%);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 24px;
+    }
+
+    main {
+      width: min(100%, 560px);
+      background: var(--surface);
+      border: 1px solid rgba(216, 222, 232, 0.82);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(2rem, 6vw, 3rem);
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    input[type="text"] {
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font: inherit;
+      padding: 12px 14px;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+      outline: none;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .add-button {
+      background: var(--primary);
+      color: white;
+      padding: 0 18px;
+    }
+
+    .add-button:hover {
+      background: var(--primary-dark);
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .clear-button {
+      background: #eef2ff;
+      color: var(--primary-dark);
+      padding: 8px 10px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid var(--border);
+      padding: 14px 0;
+    }
+
+    li:first-child {
+      border-top: 0;
+    }
+
+    .todo-check {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--done);
+      cursor: pointer;
+    }
+
+    .todo-text {
+      overflow-wrap: anywhere;
+      line-height: 1.4;
+    }
+
+    .completed .todo-text {
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .delete-button {
+      background: #fee2e2;
+      color: var(--danger);
+      min-width: 38px;
+      min-height: 34px;
+    }
+
+    .empty-state {
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      margin: 14px 0 0;
+      padding: 22px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 14px;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .add-button {
+        min-height: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>To-Do List</h1>
+    <p class="subtitle">Add tasks, check them off, and remove anything you no longer need.</p>
+
+    <form id="todo-form">
+      <input id="todo-input" type="text" placeholder="What needs to get done?" autocomplete="off" required>
+      <button class="add-button" type="submit">Add</button>
+    </form>
+
+    <div class="toolbar">
+      <span id="task-count">0 tasks left</span>
+      <button class="clear-button" id="clear-completed" type="button">Clear completed</button>
+    </div>
+
+    <ul id="todo-list"></ul>
+    <p class="empty-state" id="empty-state">No tasks yet. Add your first one above.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
