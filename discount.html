@@ -3,15 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discount</title>
+  <title>Checkout Discount</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      max-width: 520px;
+      background: #f5f7fb;
+      color: #222;
+    }
+
+    main {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+    }
+
+    input[type="number"] {
+      box-sizing: border-box;
+      font-size: 1rem;
+      margin-top: 6px;
+      padding: 8px;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 18px;
+      padding: 10px 14px;
+    }
+
+    .summary {
+      border-top: 1px solid #ddd;
+      margin-top: 22px;
+      padding-top: 16px;
+    }
+
+    .summary p {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .final {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>Discount</h1>
+  <main>
+    <h1>Checkout</h1>
 
-  <input id="total" type="number" placeholder="Cart total">
-  <label><input id="member" type="checkbox"> Member</label>
-  <button onclick="showDiscount()">Check</button>
-  <p id="result"></p>
+    <label for="total">Cart total</label>
+    <input id="total" type="number" placeholder="100">
+
+    <label><input id="member" type="checkbox"> I am a member</label>
+    <button onclick="showDiscount()">Apply Discount</button>
+
+    <div class="summary">
+      <p><span>Discount percent:</span> <span id="discount">0%</span></p>
+      <p><span>Discount applied:</span> <span id="saved">$0.00</span></p>
+      <p class="final"><span>Final price:</span> <span id="final">$0.00</span></p>
+    </div>
+  </main>
 
   <script>
     function getDiscount(total, isMember) {
@@ -28,8 +87,12 @@
       const total = Number(document.querySelector("#total").value);
       const isMember = document.querySelector("#member").checked;
       const discount = getDiscount(total, isMember);
+      const discountAmount = total * discount / 100;
+      const finalPrice = total - discountAmount;
 
-      document.querySelector("#result").textContent = "Discount: " + discount + "%";
+      document.querySelector("#discount").textContent = discount + "%";
+      document.querySelector("#saved").textContent = "$" + discountAmount.toFixed(2);
+      document.querySelector("#final").textContent = "$" + finalPrice.toFixed(2);
     }
   </script>
 </body>
