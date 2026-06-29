@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount</title>
+</head>
+<body>
+  <h1>Discount</h1>
+
+  <input id="total" type="number" placeholder="Cart total">
+  <label><input id="member" type="checkbox"> Member</label>
+  <button onclick="showDiscount()">Check</button>
+  <p id="result"></p>
+
+  <script>
+    function getDiscount(total, isMember) {
+      if (total >= 100 && isMember) {
+        return 20;
+      } else if (total >= 100 || isMember) {
+        return 10;
+      } else {
+        return 0;
+      }
+    }
+
+    function showDiscount() {
+      const total = Number(document.querySelector("#total").value);
+      const isMember = document.querySelector("#member").checked;
+      const discount = getDiscount(total, isMember);
+
+      document.querySelector("#result").textContent = "Discount: " + discount + "%";
+    }
+  </script>
+</body>
+</html>
