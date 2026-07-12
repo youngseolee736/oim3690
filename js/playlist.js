@@ -7,14 +7,37 @@ const songs = [
 ];
 
 const playlist = document.querySelector("#playlist");
+const songForm = document.querySelector("#song-form");
+const songTitleInput = document.querySelector("#song-title");
 
-for (const song of songs) {
-  const listItem = document.createElement("li");
-  listItem.textContent = song;
+function renderPlaylist() {
+  playlist.replaceChildren();
 
-  if (song.includes("Remix")) {
-    listItem.textContent = song + " ⭐";
+  for (const song of songs) {
+    const listItem = document.createElement("li");
+    listItem.textContent = song;
+
+    if (song.includes("Remix")) {
+      listItem.textContent = song + " ⭐";
+    }
+
+    playlist.appendChild(listItem);
+  }
+}
+
+songForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const newSong = songTitleInput.value.trim();
+
+  if (newSong === "") {
+    return;
   }
 
-  playlist.appendChild(listItem);
-}
+  songs.push(newSong);
+  renderPlaylist();
+  songForm.reset();
+  songTitleInput.focus();
+});
+
+renderPlaylist();
