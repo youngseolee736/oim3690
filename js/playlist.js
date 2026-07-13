@@ -1,9 +1,9 @@
 const songs = [
-  "Blinding Lights",
-  "Good Days",
-  "Levitating Remix",
-  "Golden",
-  "As It Was"
+  "BIGBANG - BANG BANG BANG",
+  "BIGBANG - FANTASTIC BABY Remix",
+  "BIGBANG - HARU HARU",
+  "G-DRAGON - CROOKED",
+  "G-DRAGON - UNTITLED, 2014"
 ];
 
 const playlist = document.querySelector("#playlist");
