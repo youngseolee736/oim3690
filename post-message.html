@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post a Message</title>
+</head>
+<body>
+  <h1>Post to the Message Board</h1>
+
+  <form id="message-form">
+    <label for="message">Message</label>
+    <input id="message" type="text" placeholder="Write a message" required>
+    <button type="submit">Post message</button>
+  </form>
+
+  <p id="status" aria-live="polite"></p>
+
+  <script>
+    const messageForm = document.querySelector("#message-form");
+    const messageInput = document.querySelector("#message");
+    const status = document.querySelector("#status");
+
+    async function postMessage(text) {
+      const response = await fetch("https://oim.zhili.dev/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Token": "youngseoyoungseo"
+        },
+        body: JSON.stringify({ message: text })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Message could not be posted.");
+      }
+
+      return result;
+    }
+
+    messageForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const message = messageInput.value.trim();
+
+      if (message === "") {
+        return;
+      }
+
+      status.textContent = "Posting...";
+
+      try {
+        const result = await postMessage(message);
+        console.log(result);
+        status.textContent = "Message posted!";
+        messageForm.reset();
+        messageInput.focus();
+      } catch (error) {
+        console.error(error);
+        status.textContent = "Could not post the message. Check your token and try again.";
+      }
+    });
+  </script>
+</body>
+</html>
