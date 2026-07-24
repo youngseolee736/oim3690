@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Young Seo Lee's ten-week OIM3690 learning journey, from HTML foundations to APIs and multi-agent AI systems."
+  >
+  <title>My Learning Journey | Young Seo Lee</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    :root {
+      --journey-navy: #102a43;
+      --journey-blue: #2f6fed;
+      --journey-cyan: #16a6b6;
+      --journey-gold: #f5b642;
+      --journey-ink: #203248;
+      --journey-muted: #62748a;
+      --journey-line: #d7e2ef;
+      --journey-soft: #eef5ff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at 8% 8%, rgba(47, 111, 237, 0.13), transparent 28rem),
+        linear-gradient(180deg, #f7faff 0%, #edf3fa 100%);
+    }
+
+    .journey-header {
+      position: relative;
+      overflow: hidden;
+      min-height: 470px;
+      padding: 24px clamp(20px, 6vw, 80px) 72px;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(34, 211, 238, 0.28), transparent 22rem),
+        linear-gradient(135deg, #0b1f35 0%, #163f6b 58%, #2f6fed 100%);
+    }
+
+    .journey-header::after {
+      position: absolute;
+      right: -90px;
+      bottom: -165px;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 55px rgba(255, 255, 255, 0.04),
+        0 0 0 110px rgba(255, 255, 255, 0.03);
+      content: "";
+    }
+
+    .journey-nav,
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .journey-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 0;
+    }
+
+    .journey-nav .brand {
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .journey-nav div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .journey-nav a {
+      margin: 0;
+      color: #e7f2ff;
+      font-size: 0.92rem;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
+      gap: clamp(32px, 7vw, 90px);
+      align-items: end;
+      padding-top: 82px;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #90e6f2;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .journey-header h1 {
+      max-width: 760px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(3rem, 8vw, 6.7rem);
+      line-height: 0.92;
+      letter-spacing: -0.055em;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      margin: 24px 0 0;
+      color: #dceafa;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .hero-side {
+      padding: 22px 0 4px 22px;
+      border-left: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-side strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #fff;
+      font-size: 2.8rem;
+      line-height: 1;
+    }
+
+    .hero-side span {
+      color: #c8d9ed;
+      font-size: 0.9rem;
+    }
+
+    .journey-main {
+      width: min(1120px, calc(100% - 32px));
+      max-width: none;
+      margin: -34px auto 0;
+      padding: 0 0 64px;
+    }
+
+    .overview {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 18px;
+      box-shadow: 0 18px 48px rgba(12, 36, 62, 0.14);
+    }
+
+    .stat {
+      padding: 25px;
+      background: #fff;
+      border-right: 1px solid var(--journey-line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--journey-navy);
+      font-size: 1.65rem;
+    }
+
+    .stat span {
+      color: var(--journey-muted);
+      font-size: 0.84rem;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.65fr 1.35fr;
+      gap: 30px;
+      align-items: end;
+      margin: 80px 0 28px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--journey-navy);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--journey-muted);
+    }
+
+    .growth-path {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      padding: 0;
+      overflow: hidden;
+      background: var(--journey-line);
+      border: 1px solid var(--journey-line);
+      border-radius: 16px;
+      box-shadow: none;
+    }
+
+    .growth-step {
+      position: relative;
+      min-height: 190px;
+      padding: 25px;
+      background: #fff;
+    }
+
+    .growth-step::before {
+      display: block;
+      width: 32px;
+      height: 4px;
+      margin-bottom: 30px;
+      border-radius: 999px;
+      background: var(--step-color, var(--journey-blue));
+      content: "";
+    }
+
+    .growth-step:nth-child(1) {
+      --step-color: #2f6fed;
+    }
+
+    .growth-step:nth-child(2) {
+      --step-color: #16a6b6;
+    }
+
+    .growth-step:nth-child(3) {
+      --step-color: #8b5cf6;
+    }
+
+    .growth-step:nth-child(4) {
+      --step-color: #f5b642;
+    }
+
+    .growth-step small {
+      color: var(--journey-muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .growth-step h3 {
+      margin: 8px 0;
+      color: var(--journey-navy);
+      font-size: 1.15rem;
+    }
+
+    .growth-step p {
+      margin: 0;
+      color: var(--journey-muted);
+      font-size: 0.9rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 26px;
+    }
+
+    .filter-button {
+      min-height: 0;
+      padding: 9px 15px;
+      color: var(--journey-navy);
+      background: transparent;
+      border: 1px solid #b9c8da;
+      border-radius: 999px;
+      font-size: 0.86rem;
+    }
+
+    .filter-button:hover,
+    .filter-button[aria-pressed="true"] {
+      color: #fff;
+      background: var(--journey-navy);
+      border-color: var(--journey-navy);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .week-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      min-height: 390px;
+      margin: 0;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid var(--journey-line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 10px 28px rgba(21, 54, 89, 0.07);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .week-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 34px rgba(21, 54, 89, 0.12);
+    }
+
+    .week-card[hidden] {
+      display: none;
+    }
+
+    .week-number {
+      position: absolute;
+      top: 13px;
+      right: 18px;
+      color: #e7eef7;
+      font-size: 4.8rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.08em;
+    }
+
+    .week-meta {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 22px;
+      color: var(--journey-blue);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .week-card h3 {
+      position: relative;
+      z-index: 1;
+      max-width: 78%;
+      margin: 0 0 18px;
+      color: var(--journey-navy);
+      font-size: 1.55rem;
+      line-height: 1.12;
+    }
+
+    .week-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--journey-ink);
+      font-size: 0.93rem;
+    }
+
+    .week-card li + li {
+      margin-top: 7px;
+    }
+
+    .week-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--journey-line);
+    }
+
+    .tag {
+      padding: 5px 9px;
+      color: #27516f;
+      background: #e8f4fb;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .log-link {
+      color: var(--journey-blue);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .log-link:hover {
+      color: var(--journey-navy);
+      text-decoration: underline;
+    }
+
+    .reflection {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      padding: 0;
+      overflow: hidden;
+      background: var(--journey-line);
+      border: 1px solid var(--journey-line);
+      border-radius: 18px;
+      box-shadow: none;
+    }
+
+    .reflection article {
+      padding: clamp(26px, 5vw, 48px);
+      background: #fff;
+    }
+
+    .reflection article:last-child {
+      color: #e9f2fc;
+      background: var(--journey-navy);
+    }
+
+    .reflection h3 {
+      margin: 0 0 15px;
+      color: var(--journey-navy);
+      font-size: 1.6rem;
+    }
+
+    .reflection article:last-child h3 {
+      color: #fff;
+    }
+
+    .reflection p {
+      margin: 0;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .project-links a {
+      padding: 9px 13px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .project-links a:hover {
+      color: var(--journey-navy);
+      background: #fff;
+    }
+
+    .journey-footer {
+      padding: 30px 16px;
+      color: #d4e1ef;
+      background: #0b1f35;
+    }
+
+    .journey-footer a {
+      color: #fff;
+    }
+
+    @media (max-width: 800px) {
+      .hero-content,
+      .section-heading {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        align-items: start;
+        padding-top: 60px;
+      }
+
+      .hero-side {
+        max-width: 300px;
+      }
+
+      .overview,
+      .growth-path {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--journey-line);
+      }
+
+      .timeline,
+      .reflection {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .journey-header {
+        min-height: 520px;
+        padding-inline: 18px;
+      }
+
+      .journey-nav {
+        align-items: flex-start;
+      }
+
+      .journey-nav div {
+        gap: 10px;
+      }
+
+      .overview,
+      .growth-path {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--journey-line);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .growth-step {
+        min-height: 0;
+      }
+
+      .week-card {
+        min-height: 0;
+        padding: 24px 21px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .week-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="journey-header">
+    <nav class="journey-nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html">Young Seo Lee / OIM3690</a>
+      <div>
+        <a href="index.html">Home</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#reflection">Reflection</a>
+        <a href="https://github.com/youngseolee736/oim3690">GitHub</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <div>
+        <p class="eyebrow">Summer 2026 · Ten-week reflection</p>
+        <h1>My Learning Journey</h1>
+        <p class="hero-copy">
+          I began with a simple HTML page. Ten weeks later, I was connecting APIs,
+          building backend workflows, and testing multi-agent AI systems.
+        </p>
+      </div>
+      <div class="hero-side">
+        <strong>10</strong>
+        <span>weeks of building, testing, reflecting, and improving</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="journey-main">
+    <section class="overview" aria-label="Learning journey overview">
+      <div class="stat">
+        <strong>HTML → API</strong>
+        <span>Technical progression</span>
+      </div>
+      <div class="stat">
+        <strong>1 final project</strong>
+        <span>CreatorPilot, built in Weeks 9–10</span>
+      </div>
+      <div class="stat">
+        <strong>10</strong>
+        <span>Weekly reflections</span>
+      </div>
+      <div class="stat">
+        <strong>1 goal</strong>
+        <span>Build with purpose</span>
+      </div>
+    </section>
+
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">The big picture</p>
+        <h2>How my skills grew</h2>
+      </div>
+      <p>
+        Each stage built on the one before it: first structuring pages, then making
+        them interactive, and finally connecting them to APIs and AI systems.
+      </p>
+    </div>
+
+    <section class="growth-path" aria-label="Skills progression">
+      <article class="growth-step">
+        <small>Weeks 1–2</small>
+        <h3>Web foundations</h3>
+        <p>HTML structure, Markdown, images, semantic tags, and GitHub Pages.</p>
+      </article>
+      <article class="growth-step">
+        <small>Weeks 3–5</small>
+        <h3>Design &amp; clients</h3>
+        <p>Planning, reference research, responsive layouts, DOM basics, and client feedback.</p>
+      </article>
+      <article class="growth-step">
+        <small>Weeks 6–8</small>
+        <h3>JavaScript &amp; APIs</h3>
+        <p>Conditions, events, localStorage, JSON, API requests, and API-key safety.</p>
+      </article>
+      <article class="growth-step">
+        <small>Weeks 9–10</small>
+        <h3>Final project: CreatorPilot</h3>
+        <p>Express backends, specialized agents, OpenRouter, model judging, testing, and cost.</p>
+      </article>
+    </section>
+
+    <div class="section-heading" id="timeline">
+      <div>
+        <p class="eyebrow">Week by week</p>
+        <h2>The timeline</h2>
+      </div>
+      <p>
+        Filter the timeline to see how the work moved from fundamentals to
+        JavaScript and then to API-powered AI projects.
+      </p>
+    </div>
+
+    <div class="filter-bar" role="group" aria-label="Filter weeks by learning stage">
+      <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All weeks</button>
+      <button class="filter-button" type="button" data-filter="foundation" aria-pressed="false">Foundations</button>
+      <button class="filter-button" type="button" data-filter="javascript" aria-pressed="false">JavaScript</button>
+      <button class="filter-button" type="button" data-filter="ai" aria-pressed="false">APIs &amp; AI</button>
+    </div>
+
+    <div class="timeline">
+      <article class="week-card" data-stage="foundation">
+        <span class="week-number" aria-hidden="true">01</span>
+        <p class="week-meta">May 18–20 · Starting point</p>
+        <h3>Building my first web presence</h3>
+        <ul>
+          <li>Created my personal website and course repository.</li>
+          <li>Learned the roles of HTML, README files, Markdown, and GitHub Pages.</li>
+          <li>Used ChatGPT to organize the repository and understand a basic HTML page.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">HTML · GitHub</span>
+          <a class="log-link" href="logs/wk01.md">Read Week 1 log →</a>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="foundation">
+        <span class="week-number" aria-hidden="true">02</span>
+        <p class="week-meta">May 25–29 · Page structure</p>
+        <h3>Adding meaning and personality</h3>
+        <ul>
+          <li>Built <code>hello.html</code> and <code>about-me.html</code>.</li>
+          <li>Worked with semantic elements and both local and external images.</li>
+          <li>Kept AI suggestions simple, then replaced generic details with my own content.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">Semantic HTML · Images</span>
+          <a class="log-link" href="logs/wk02.md">Read Week 2 log →</a>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="foundation">
+        <span class="week-number" aria-hidden="true">03</span>
+        <p class="week-meta">June 1–5 · Project 1 discovery</p>
+        <h3>Designing for a real client</h3>
+        <ul>
+          <li>Interviewed my father as the client for the Project 1 hospital website.</li>
+          <li>Reviewed the existing English site and identified content and design problems.</li>
+          <li>Learned that better prompts and stronger references produce more useful AI designs.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">Planning · Client needs</span>
+          <a class="log-link" href="logs/wk03.md">Read Week 3 log →</a>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="foundation">
+        <span class="week-number" aria-hidden="true">04</span>
+        <p class="week-meta">June 8–13 · Building Project 1</p>
+        <h3>Moving from the plan to a live website</h3>
+        <ul>
+          <li>Started coding and deployed the hospital website as Project 1.</li>
+          <li>Reworked my personal site into a modern geopolitics blog concept.</li>
+          <li>Learned responsive design, Flexbox, Grid, viewport settings, and form methods.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">CSS · Responsive design</span>
+          <a class="log-link" href="logs/wk04.md">Read Week 4 log →</a>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="javascript">
+        <span class="week-number" aria-hidden="true">05</span>
+        <p class="week-meta">June 15–19 · Presenting Project 1</p>
+        <h3>Understanding the DOM</h3>
+        <ul>
+          <li>Reviewed JavaScript demos and presented the Project 1 hospital site to the client.</li>
+          <li>Learned how the browser creates a DOM tree that JavaScript can change.</li>
+          <li>Explored <code>Math.random()</code>, <code>parseInt()</code>, and <code>classList</code> with AI.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">DOM · Client feedback</span>
+          <a class="log-link" href="logs/wk05.md">Read Week 5 log →</a>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="javascript">
+        <span class="week-number" aria-hidden="true">06</span>
+        <p class="week-meta">June 22–26 · Project 2 begins</p>
+        <h3>Turning JavaScript into a useful study tool</h3>
+        <ul>
+          <li>Created the CPA Progress Tracker as Project 2 around my own study needs.</li>
+          <li>Practiced inputs, number conversion, conditions, logical operators, and localStorage.</li>
+          <li>Used AI to plan the dashboard, refine its design, and persist study data.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">JavaScript · localStorage</span>
+          <div>
+            <a class="log-link" href="logs/wk06.md">Week 6 log</a>
+            ·
+            <a
+              class="log-link"
+              href="https://youngseolee736.github.io/CPA-progress-tracker/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Project 2 · Live ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="javascript">
+        <span class="week-number" aria-hidden="true">07</span>
+        <p class="week-meta">June 29–July 5 · Completing Project 2</p>
+        <h3>Finishing, debugging, and presenting</h3>
+        <ul>
+          <li>Finished and presented the CPA Progress Tracker as Project 2.</li>
+          <li>Added persistent progress, a custom date picker, and study-planning improvements.</li>
+          <li>Built a temperature converter and an upgraded discount calculator.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">Debugging · Events</span>
+          <div>
+            <a class="log-link" href="logs/wk07.md">Week 7 log</a>
+            ·
+            <a
+              class="log-link"
+              href="https://youngseolee736.github.io/CPA-progress-tracker/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Project 2 · Live ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="ai">
+        <span class="week-number" aria-hidden="true">08</span>
+        <p class="week-meta">July 6–12 · Project 3 planning</p>
+        <h3>Planning an API-powered project</h3>
+        <ul>
+          <li>Created an AI chatbot with the course API.</li>
+          <li>Learned how APIs exchange JSON data and why keys belong in environment variables.</li>
+          <li>Planned Pokémon Face Match as Project 3 and selected PokéAPI as its data source.</li>
+          <li>Considered API failure states, request limits, and secure key handling.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">API · JSON · Security</span>
+          <div>
+            <a class="log-link" href="logs/wk08.md">Week 8 log</a>
+            ·
+            <a
+              class="log-link"
+              href="https://youngseolee736.github.io/pokemon/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >View Project 3 ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="ai">
+        <span class="week-number" aria-hidden="true">09</span>
+        <p class="week-meta">July 13–19 · Project 3 + final project</p>
+        <h3>Completing Pokémon and starting CreatorPilot</h3>
+        <ul>
+          <li>Built and deployed Pokémon Face Match as my API-based Project 3.</li>
+          <li>Used PokéAPI for live Pokémon search, type filters, details, matching, and a battle activity.</li>
+          <li>Shifted the project concept from RelocateAI to CreatorPilot.</li>
+          <li>Connected a Node.js and Express backend and worked with YouTube transcripts.</li>
+          <li>Separated analysis, research, writing, originality, and storyboard work into AI agents.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">Express · AI agents</span>
+          <div>
+            <a class="log-link" href="logs/wk09.md">Week 9 log</a>
+            ·
+            <a
+              class="log-link"
+              href="https://youngseolee736.github.io/pokemon/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Project 3</a>
+            ·
+            <a
+              class="log-link"
+              href="https://creatorpilot-95k2.onrender.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Live project ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="week-card" data-stage="ai">
+        <span class="week-number" aria-hidden="true">10</span>
+        <p class="week-meta">July 20–26 · Final project expansion</p>
+        <h3>Balancing quality, freedom, and cost</h3>
+        <ul>
+          <li>Added research, multi-reference analysis, and Standard and Deep modes.</li>
+          <li>Used OpenRouter to compare GPT and Gemini outputs through a Judge system.</li>
+          <li>Learned that strict agent contracts can hurt quality and strong models can raise costs quickly.</li>
+        </ul>
+        <div class="week-footer">
+          <span class="tag">OpenRouter · Evaluation</span>
+          <div>
+            <a class="log-link" href="logs/wk10.md">Week 10 log</a>
+            ·
+            <a
+              class="log-link"
+              href="https://creatorpilot-95k2.onrender.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Live project ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-heading" id="reflection">
+      <div>
+        <p class="eyebrow">Looking back</p>
+        <h2>My main takeaway</h2>
+      </div>
+      <p>
+        The biggest change was not just learning more technology. It was learning
+        how to move from an idea to a tested product while making my own decisions.
+      </p>
+    </div>
+
+    <section class="reflection">
+      <article>
+        <h3>How I changed as a builder</h3>
+        <p>
+          At first, I used AI mainly to generate pages and explain unfamiliar code.
+          Over time, I became more selective: I compared references, rejected weak
+          designs, tested generated code, fixed problems, and considered security,
+          reliability, model quality, and cost.
+        </p>
+      </article>
+      <article>
+        <h3>Projects that show the journey</h3>
+        <p>
+          My work progressed from a client website to a JavaScript study tracker,
+          an API-powered Pokémon project, and finally a multi-agent
+          content-creation workflow.
+        </p>
+        <div class="project-links">
+          <a href="https://youngseolee736.github.io/mp1-hospital/">Hospital Site · Project 1 ↗</a>
+          <a
+            href="https://youngseolee736.github.io/CPA-progress-tracker/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >CPA Tracker · Project 2 ↗</a>
+          <a
+            href="https://youngseolee736.github.io/pokemon/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Pokémon · Project 3 ↗</a>
+          <a
+            href="https://creatorpilot-95k2.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >CreatorPilot · Final Project ↗</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="journey-footer">
+    <p>
+      Created by Young Seo Lee for OIM3690 ·
+      <a href="https://github.com/youngseolee736/oim3690">View the course repository</a>
+    </p>
+  </footer>
+
+  <script>
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const weekCards = document.querySelectorAll("[data-stage]");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selectedFilter = button.dataset.filter;
+
+        filterButtons.forEach((filterButton) => {
+          filterButton.setAttribute(
+            "aria-pressed",
+            String(filterButton === button)
+          );
+        });
+
+        weekCards.forEach((card) => {
+          card.hidden =
+            selectedFilter !== "all" &&
+            card.dataset.stage !== selectedFilter;
+        });
+      });
+    });
+  </script>
+</body>
+</html>
