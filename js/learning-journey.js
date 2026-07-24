@@ -288,7 +288,7 @@ const projectData = {
       "The largest challenge was coordinating several unpredictable AI stages while controlling context, originality, response time, API failures, and model cost.",
     lesson:
       "A complex AI workflow improves through testing and tradeoffs. More rules or a more expensive model do not automatically produce a better result.",
-    live: "",
+    live: "https://creatorpilot-plum.vercel.app/",
     github: "https://github.com/youngseolee736/creatorpilot",
     color: "#b796ff"
   }
