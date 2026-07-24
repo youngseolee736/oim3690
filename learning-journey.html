@@ -5,936 +5,598 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta
     name="description"
-    content="Young Seo Lee's ten-week OIM3690 learning journey, from HTML foundations to APIs and multi-agent AI systems."
+    content="Young Seo Lee's interactive ten-week web development learning journey."
   >
-  <title>My Learning Journey | Young Seo Lee</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    :root {
-      --journey-navy: #102a43;
-      --journey-blue: #2f6fed;
-      --journey-cyan: #16a6b6;
-      --journey-gold: #f5b642;
-      --journey-ink: #203248;
-      --journey-muted: #62748a;
-      --journey-line: #d7e2ef;
-      --journey-soft: #eef5ff;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background:
-        radial-gradient(circle at 8% 8%, rgba(47, 111, 237, 0.13), transparent 28rem),
-        linear-gradient(180deg, #f7faff 0%, #edf3fa 100%);
-    }
-
-    .journey-header {
-      position: relative;
-      overflow: hidden;
-      min-height: 470px;
-      padding: 24px clamp(20px, 6vw, 80px) 72px;
-      background:
-        radial-gradient(circle at 88% 20%, rgba(34, 211, 238, 0.28), transparent 22rem),
-        linear-gradient(135deg, #0b1f35 0%, #163f6b 58%, #2f6fed 100%);
-    }
-
-    .journey-header::after {
-      position: absolute;
-      right: -90px;
-      bottom: -165px;
-      width: 420px;
-      height: 420px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50%;
-      box-shadow:
-        0 0 0 55px rgba(255, 255, 255, 0.04),
-        0 0 0 110px rgba(255, 255, 255, 0.03);
-      content: "";
-    }
-
-    .journey-nav,
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      width: min(1120px, 100%);
-      margin: 0 auto;
-    }
-
-    .journey-nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 0;
-    }
-
-    .journey-nav .brand {
-      color: #fff;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .journey-nav div {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .journey-nav a {
-      margin: 0;
-      color: #e7f2ff;
-      font-size: 0.92rem;
-    }
-
-    .hero-content {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
-      gap: clamp(32px, 7vw, 90px);
-      align-items: end;
-      padding-top: 82px;
-    }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: #90e6f2;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .journey-header h1 {
-      max-width: 760px;
-      margin: 0;
-      color: #fff;
-      font-size: clamp(3rem, 8vw, 6.7rem);
-      line-height: 0.92;
-      letter-spacing: -0.055em;
-    }
-
-    .hero-copy {
-      max-width: 690px;
-      margin: 24px 0 0;
-      color: #dceafa;
-      font-size: clamp(1rem, 2vw, 1.18rem);
-    }
-
-    .hero-side {
-      padding: 22px 0 4px 22px;
-      border-left: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .hero-side strong {
-      display: block;
-      margin-bottom: 7px;
-      color: #fff;
-      font-size: 2.8rem;
-      line-height: 1;
-    }
-
-    .hero-side span {
-      color: #c8d9ed;
-      font-size: 0.9rem;
-    }
-
-    .journey-main {
-      width: min(1120px, calc(100% - 32px));
-      max-width: none;
-      margin: -34px auto 0;
-      padding: 0 0 64px;
-    }
-
-    .overview {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      padding: 0;
-      overflow: hidden;
-      border: 0;
-      border-radius: 18px;
-      box-shadow: 0 18px 48px rgba(12, 36, 62, 0.14);
-    }
-
-    .stat {
-      padding: 25px;
-      background: #fff;
-      border-right: 1px solid var(--journey-line);
-    }
-
-    .stat:last-child {
-      border-right: 0;
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--journey-navy);
-      font-size: 1.65rem;
-    }
-
-    .stat span {
-      color: var(--journey-muted);
-      font-size: 0.84rem;
-    }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: 0.65fr 1.35fr;
-      gap: 30px;
-      align-items: end;
-      margin: 80px 0 28px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      color: var(--journey-navy);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1;
-      letter-spacing: -0.04em;
-    }
-
-    .section-heading p {
-      max-width: 620px;
-      margin: 0;
-      color: var(--journey-muted);
-    }
-
-    .growth-path {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      padding: 0;
-      overflow: hidden;
-      background: var(--journey-line);
-      border: 1px solid var(--journey-line);
-      border-radius: 16px;
-      box-shadow: none;
-    }
-
-    .growth-step {
-      position: relative;
-      min-height: 190px;
-      padding: 25px;
-      background: #fff;
-    }
-
-    .growth-step::before {
-      display: block;
-      width: 32px;
-      height: 4px;
-      margin-bottom: 30px;
-      border-radius: 999px;
-      background: var(--step-color, var(--journey-blue));
-      content: "";
-    }
-
-    .growth-step:nth-child(1) {
-      --step-color: #2f6fed;
-    }
-
-    .growth-step:nth-child(2) {
-      --step-color: #16a6b6;
-    }
-
-    .growth-step:nth-child(3) {
-      --step-color: #8b5cf6;
-    }
-
-    .growth-step:nth-child(4) {
-      --step-color: #f5b642;
-    }
-
-    .growth-step small {
-      color: var(--journey-muted);
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .growth-step h3 {
-      margin: 8px 0;
-      color: var(--journey-navy);
-      font-size: 1.15rem;
-    }
-
-    .growth-step p {
-      margin: 0;
-      color: var(--journey-muted);
-      font-size: 0.9rem;
-    }
-
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-bottom: 26px;
-    }
-
-    .filter-button {
-      min-height: 0;
-      padding: 9px 15px;
-      color: var(--journey-navy);
-      background: transparent;
-      border: 1px solid #b9c8da;
-      border-radius: 999px;
-      font-size: 0.86rem;
-    }
-
-    .filter-button:hover,
-    .filter-button[aria-pressed="true"] {
-      color: #fff;
-      background: var(--journey-navy);
-      border-color: var(--journey-navy);
-    }
-
-    .timeline {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .week-card {
-      position: relative;
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      min-height: 390px;
-      margin: 0;
-      padding: 28px;
-      overflow: hidden;
-      border: 1px solid var(--journey-line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.92);
-      box-shadow: 0 10px 28px rgba(21, 54, 89, 0.07);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-
-    .week-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 34px rgba(21, 54, 89, 0.12);
-    }
-
-    .week-card[hidden] {
-      display: none;
-    }
-
-    .week-number {
-      position: absolute;
-      top: 13px;
-      right: 18px;
-      color: #e7eef7;
-      font-size: 4.8rem;
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: -0.08em;
-    }
-
-    .week-meta {
-      position: relative;
-      z-index: 1;
-      margin: 0 0 22px;
-      color: var(--journey-blue);
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .week-card h3 {
-      position: relative;
-      z-index: 1;
-      max-width: 78%;
-      margin: 0 0 18px;
-      color: var(--journey-navy);
-      font-size: 1.55rem;
-      line-height: 1.12;
-    }
-
-    .week-card ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--journey-ink);
-      font-size: 0.93rem;
-    }
-
-    .week-card li + li {
-      margin-top: 7px;
-    }
-
-    .week-footer {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 24px;
-      padding-top: 18px;
-      border-top: 1px solid var(--journey-line);
-    }
-
-    .tag {
-      padding: 5px 9px;
-      color: #27516f;
-      background: #e8f4fb;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-
-    .log-link {
-      color: var(--journey-blue);
-      font-size: 0.84rem;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .log-link:hover {
-      color: var(--journey-navy);
-      text-decoration: underline;
-    }
-
-    .reflection {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      padding: 0;
-      overflow: hidden;
-      background: var(--journey-line);
-      border: 1px solid var(--journey-line);
-      border-radius: 18px;
-      box-shadow: none;
-    }
-
-    .reflection article {
-      padding: clamp(26px, 5vw, 48px);
-      background: #fff;
-    }
-
-    .reflection article:last-child {
-      color: #e9f2fc;
-      background: var(--journey-navy);
-    }
-
-    .reflection h3 {
-      margin: 0 0 15px;
-      color: var(--journey-navy);
-      font-size: 1.6rem;
-    }
-
-    .reflection article:last-child h3 {
-      color: #fff;
-    }
-
-    .reflection p {
-      margin: 0;
-    }
-
-    .project-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .project-links a {
-      padding: 9px 13px;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 999px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .project-links a:hover {
-      color: var(--journey-navy);
-      background: #fff;
-    }
-
-    .journey-footer {
-      padding: 30px 16px;
-      color: #d4e1ef;
-      background: #0b1f35;
-    }
-
-    .journey-footer a {
-      color: #fff;
-    }
-
-    @media (max-width: 800px) {
-      .hero-content,
-      .section-heading {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-content {
-        align-items: start;
-        padding-top: 60px;
-      }
-
-      .hero-side {
-        max-width: 300px;
-      }
-
-      .overview,
-      .growth-path {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .stat:nth-child(2) {
-        border-right: 0;
-      }
-
-      .stat:nth-child(-n + 2) {
-        border-bottom: 1px solid var(--journey-line);
-      }
-
-      .timeline,
-      .reflection {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .journey-header {
-        min-height: 520px;
-        padding-inline: 18px;
-      }
-
-      .journey-nav {
-        align-items: flex-start;
-      }
-
-      .journey-nav div {
-        gap: 10px;
-      }
-
-      .overview,
-      .growth-path {
-        grid-template-columns: 1fr;
-      }
-
-      .stat {
-        border-right: 0;
-        border-bottom: 1px solid var(--journey-line);
-      }
-
-      .stat:last-child {
-        border-bottom: 0;
-      }
-
-      .growth-step {
-        min-height: 0;
-      }
-
-      .week-card {
-        min-height: 0;
-        padding: 24px 21px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .week-card {
-        transition: none;
-      }
-    }
-  </style>
+  <title>10 Weeks. One Skill Tree. | Young Seo Lee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="css/learning-journey.css">
 </head>
 <body>
-  <header class="journey-header">
-    <nav class="journey-nav" aria-label="Primary navigation">
-      <a class="brand" href="index.html">Young Seo Lee / OIM3690</a>
-      <div>
-        <a href="index.html">Home</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#reflection">Reflection</a>
-        <a href="https://github.com/youngseolee736/oim3690">GitHub</a>
-      </div>
-    </nav>
+  <a class="skip-link" href="#skill-tree">Skip to the skill tree</a>
 
-    <div class="hero-content">
-      <div>
-        <p class="eyebrow">Summer 2026 · Ten-week reflection</p>
-        <h1>My Learning Journey</h1>
-        <p class="hero-copy">
-          I began with a simple HTML page. Ten weeks later, I was connecting APIs,
-          building backend workflows, and testing multi-agent AI systems.
-        </p>
-      </div>
-      <div class="hero-side">
-        <strong>10</strong>
-        <span>weeks of building, testing, reflecting, and improving</span>
-      </div>
-    </div>
+  <header class="site-header" aria-label="Primary navigation">
+    <a class="wordmark" href="#top" aria-label="Return to the top">
+      <span class="status-dot" aria-hidden="true"></span>
+      Young Seo Lee
+    </a>
+    <nav>
+      <a href="#profile">Profile</a>
+      <a href="#skill-tree">Skill Tree</a>
+      <a href="#boss-battles">Projects</a>
+      <a href="#reflection">Reflection</a>
+    </nav>
+    <span class="header-level">LVL 10</span>
   </header>
 
-  <main class="journey-main">
-    <section class="overview" aria-label="Learning journey overview">
-      <div class="stat">
-        <strong>HTML → API</strong>
-        <span>Technical progression</span>
+  <main>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="particles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
-      <div class="stat">
-        <strong>1 final project</strong>
-        <span>CreatorPilot, built in Weeks 9–10</span>
+
+      <div class="hero-layout">
+        <div class="hero-content">
+          <p class="kicker reveal">OIM3690 · Summer 2026</p>
+          <h1 id="hero-title" class="reveal">
+            <span>10 weeks.</span>
+            <span>One skill tree.</span>
+          </h1>
+          <p class="hero-subtitle reveal">My Web Development Journey</p>
+
+          <div class="player-strip reveal" role="group" aria-label="Player information">
+            <span><small>Player</small>Young Seo</span>
+            <span><small>Level</small>10</span>
+            <span><small>Course</small>Web Development</span>
+          </div>
+
+          <div class="xp-shell reveal">
+            <div class="xp-label">
+              <span>Experience Points</span>
+              <strong>9,250 / 10,000 XP</strong>
+            </div>
+            <progress
+              class="xp-track"
+              id="xp-progress"
+              aria-label="Course experience points"
+              max="10000"
+              value="0"
+            >9,250 out of 10,000 experience points</progress>
+          </div>
+
+          <a class="primary-button reveal" href="#skill-tree">
+            Start Journey
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <figure class="hero-visual reveal" aria-hidden="true">
+          <div class="avatar-orbit avatar-orbit-outer"></div>
+          <div class="avatar-orbit avatar-orbit-inner"></div>
+          <img
+            class="hero-avatar"
+            src="images/learning-journey-avatar.png"
+            alt=""
+            width="1024"
+            height="1536"
+          >
+          <div class="avatar-scanline"></div>
+          <figcaption>
+            <span>Character class</span>
+            <strong>Developer // LVL 10</strong>
+          </figcaption>
+        </figure>
       </div>
-      <div class="stat">
-        <strong>10</strong>
-        <span>Weekly reflections</span>
+
+      <div class="hero-corner hero-corner-left" aria-hidden="true">PLAYER_YS // ONLINE</div>
+      <div class="hero-corner hero-corner-right" aria-hidden="true">BUILD 10.0.0</div>
+    </section>
+
+    <section class="profile section-shell" id="profile" aria-labelledby="profile-title">
+      <div class="section-label reveal">
+        <span>01</span>
+        <p>Player Profile</p>
       </div>
-      <div class="stat">
-        <strong>1 goal</strong>
-        <span>Build with purpose</span>
+
+      <div class="profile-panel reveal">
+        <div class="avatar" aria-hidden="true">
+          <span>YS</span>
+          <i></i>
+        </div>
+
+        <div class="profile-copy">
+          <p class="overline">Player</p>
+          <h2 id="profile-title">Young Seo</h2>
+          <p>
+            This skill tree represents the concepts, projects, challenges, and
+            problem-solving habits I developed throughout ten weeks of web development.
+          </p>
+        </div>
+
+        <dl class="profile-stats">
+          <div>
+            <dt>Class</dt>
+            <dd>Web Development Student</dd>
+          </div>
+          <div>
+            <dt>Playtime</dt>
+            <dd>10 Weeks</dd>
+          </div>
+          <div>
+            <dt>Level</dt>
+            <dd>10</dd>
+          </div>
+          <div>
+            <dt>Skills Unlocked</dt>
+            <dd id="skill-count">0</dd>
+          </div>
+          <div>
+            <dt>Projects Completed</dt>
+            <dd id="project-count">0</dd>
+          </div>
+        </dl>
+      </div>
+
+      <ul class="badge-row reveal">
+        <li>🏆 First Website</li>
+        <li>🏆 CSS Survivor</li>
+        <li>🏆 JavaScript Awakening</li>
+        <li>🏆 API Explorer</li>
+        <li>🏆 Deployment Complete</li>
+      </ul>
+    </section>
+
+    <section class="skills-section section-shell" id="skill-tree" aria-labelledby="skills-title">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-label">
+            <span>02</span>
+            <p>Main Quest</p>
+          </div>
+          <h2 id="skills-title">10-Week Skill Tree</h2>
+        </div>
+        <p>
+          Select any unlocked skill to inspect its XP, challenge, project use, and
+          reflection. Related paths and the week it was unlocked will light up.
+        </p>
+      </div>
+
+      <div class="week-console reveal">
+        <span class="console-label">Timeline</span>
+        <div class="week-indicator" role="group" aria-label="Course week selector">
+          <button type="button" data-week-filter="1"><span>01</span><i></i></button>
+          <button type="button" data-week-filter="2"><span>02</span><i></i></button>
+          <button type="button" data-week-filter="3"><span>03</span><i></i></button>
+          <button type="button" data-week-filter="4"><span>04</span><i></i></button>
+          <button type="button" data-week-filter="5"><span>05</span><i></i></button>
+          <button type="button" data-week-filter="6"><span>06</span><i></i></button>
+          <button type="button" data-week-filter="7"><span>07</span><i></i></button>
+          <button type="button" data-week-filter="8"><span>08</span><i></i></button>
+          <button type="button" data-week-filter="9"><span>09</span><i></i></button>
+          <button type="button" data-week-filter="10"><span>10</span><i></i></button>
+        </div>
+        <span class="console-status"><i></i> 15 / 15 unlocked</span>
+      </div>
+
+      <div class="skill-tree-frame reveal">
+        <div class="tree-toolbar">
+          <p><span aria-hidden="true">◇</span> Development Path</p>
+          <p>Click a node to inspect</p>
+        </div>
+
+        <div class="skill-tree-map" id="skill-tree-map">
+          <svg class="skill-connections" viewBox="0 0 1000 1120" aria-hidden="true">
+            <path data-skills="html semantic-html" d="M500 1015 C500 940 355 940 355 865"></path>
+            <path data-skills="html css" d="M500 1015 C500 940 650 940 650 865"></path>
+            <path data-skills="github deployment" d="M105 1015 C105 930 130 930 130 865"></path>
+            <path data-skills="semantic-html client-design" d="M355 805 C355 745 165 745 165 680"></path>
+            <path data-skills="css responsive-design" d="M650 805 C650 745 470 745 470 680"></path>
+            <path data-skills="css javascript" d="M650 805 C650 745 815 745 815 680"></path>
+            <path data-skills="responsive-design dom" d="M470 620 C470 565 355 565 355 505"></path>
+            <path data-skills="javascript dom" d="M815 620 C815 565 355 565 355 505"></path>
+            <path data-skills="javascript localstorage" d="M815 620 C815 565 650 565 650 505"></path>
+            <path data-skills="localstorage debugging" d="M650 445 C650 390 165 390 165 330"></path>
+            <path data-skills="dom api-json" d="M355 445 C355 390 470 390 470 330"></path>
+            <path data-skills="localstorage api-json" d="M650 445 C650 390 470 390 470 330"></path>
+            <path data-skills="api-json node-express" d="M470 270 C470 220 815 220 815 165"></path>
+            <path data-skills="api-json ai-agents" d="M470 270 C470 220 355 220 355 165"></path>
+            <path data-skills="node-express ai-agents" d="M815 105 C815 55 355 55 355 105"></path>
+            <path data-skills="ai-agents model-evaluation" d="M355 105 C355 50 650 50 650 105"></path>
+            <path data-skills="deployment node-express" d="M130 805 C130 475 815 475 815 165"></path>
+          </svg>
+
+          <button class="skill-node skill-github" type="button" data-skill="github" data-week="1">
+            <span class="node-icon" aria-hidden="true">GIT</span>
+            <strong>Git &amp; GitHub</strong>
+            <small>Week 1</small>
+          </button>
+
+          <button class="skill-node skill-html" type="button" data-skill="html" data-week="1">
+            <span class="node-icon" aria-hidden="true">&lt;/&gt;</span>
+            <strong>HTML</strong>
+            <small>Week 1</small>
+          </button>
+
+          <button class="skill-node skill-semantic" type="button" data-skill="semantic-html" data-week="2">
+            <span class="node-icon" aria-hidden="true">SEM</span>
+            <strong>Semantic HTML</strong>
+            <small>Week 2</small>
+          </button>
+
+          <button class="skill-node skill-css" type="button" data-skill="css" data-week="4">
+            <span class="node-icon" aria-hidden="true">CSS</span>
+            <strong>CSS</strong>
+            <small>Week 4</small>
+          </button>
+
+          <button class="skill-node skill-client" type="button" data-skill="client-design" data-week="3">
+            <span class="node-icon" aria-hidden="true">UX</span>
+            <strong>Client Design</strong>
+            <small>Week 3</small>
+          </button>
+
+          <button class="skill-node skill-responsive" type="button" data-skill="responsive-design" data-week="4">
+            <span class="node-icon" aria-hidden="true">RWD</span>
+            <strong>Responsive Design</strong>
+            <small>Week 4</small>
+          </button>
+
+          <button class="skill-node skill-javascript" type="button" data-skill="javascript" data-week="6">
+            <span class="node-icon" aria-hidden="true">JS</span>
+            <strong>JavaScript</strong>
+            <small>Week 6</small>
+          </button>
+
+          <button class="skill-node skill-dom" type="button" data-skill="dom" data-week="5">
+            <span class="node-icon" aria-hidden="true">DOM</span>
+            <strong>DOM</strong>
+            <small>Week 5</small>
+          </button>
+
+          <button class="skill-node skill-storage" type="button" data-skill="localstorage" data-week="6">
+            <span class="node-icon" aria-hidden="true">DB</span>
+            <strong>localStorage</strong>
+            <small>Week 6</small>
+          </button>
+
+          <button class="skill-node skill-debugging" type="button" data-skill="debugging" data-week="7">
+            <span class="node-icon" aria-hidden="true">BUG</span>
+            <strong>Debugging</strong>
+            <small>Week 7</small>
+          </button>
+
+          <button class="skill-node skill-api" type="button" data-skill="api-json" data-week="8">
+            <span class="node-icon" aria-hidden="true">API</span>
+            <strong>APIs &amp; JSON</strong>
+            <small>Week 8</small>
+          </button>
+
+          <button class="skill-node skill-deployment" type="button" data-skill="deployment" data-week="4">
+            <span class="node-icon" aria-hidden="true">UP</span>
+            <strong>Deployment</strong>
+            <small>Week 4</small>
+          </button>
+
+          <button class="skill-node skill-agents" type="button" data-skill="ai-agents" data-week="9">
+            <span class="node-icon" aria-hidden="true">AI</span>
+            <strong>AI Agents</strong>
+            <small>Week 9</small>
+          </button>
+
+          <button class="skill-node skill-models" type="button" data-skill="model-evaluation" data-week="10">
+            <span class="node-icon" aria-hidden="true">JDG</span>
+            <strong>Model Evaluation</strong>
+            <small>Week 10</small>
+          </button>
+
+          <button class="skill-node skill-backend" type="button" data-skill="node-express" data-week="9">
+            <span class="node-icon" aria-hidden="true">N/E</span>
+            <strong>Node &amp; Express</strong>
+            <small>Week 9</small>
+          </button>
+        </div>
+
+        <ul class="tree-legend">
+          <li class="legend-html">HTML</li>
+          <li class="legend-css">CSS &amp; Design</li>
+          <li class="legend-js">JavaScript</li>
+          <li class="legend-api">API &amp; Backend</li>
+          <li class="legend-ai">AI Systems</li>
+          <li class="legend-git">Git &amp; Deployment</li>
+        </ul>
       </div>
     </section>
 
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">The big picture</p>
-        <h2>How my skills grew</h2>
+    <section class="projects section-shell" id="boss-battles" aria-labelledby="projects-title">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-label">
+            <span>03</span>
+            <p>Boss Battles</p>
+          </div>
+          <h2 id="projects-title">Projects Completed</h2>
+        </div>
+        <p>
+          Each project tested a different combination of unlocked skills. Select
+          “View Project” for the challenge, reflection, and live build.
+        </p>
       </div>
-      <p>
-        Each stage built on the one before it: first structuring pages, then making
-        them interactive, and finally connecting them to APIs and AI systems.
-      </p>
-    </div>
 
-    <section class="growth-path" aria-label="Skills progression">
-      <article class="growth-step">
-        <small>Weeks 1–2</small>
-        <h3>Web foundations</h3>
-        <p>HTML structure, Markdown, images, semantic tags, and GitHub Pages.</p>
-      </article>
-      <article class="growth-step">
-        <small>Weeks 3–5</small>
-        <h3>Design &amp; clients</h3>
-        <p>Planning, reference research, responsive layouts, DOM basics, and client feedback.</p>
-      </article>
-      <article class="growth-step">
-        <small>Weeks 6–8</small>
-        <h3>JavaScript &amp; APIs</h3>
-        <p>Conditions, events, localStorage, JSON, API requests, and API-key safety.</p>
-      </article>
-      <article class="growth-step">
-        <small>Weeks 9–10</small>
-        <h3>Final project: CreatorPilot</h3>
-        <p>Express backends, specialized agents, OpenRouter, model judging, testing, and cost.</p>
+      <div class="project-grid">
+        <article class="boss-card reveal">
+          <div class="boss-topline">
+            <span>⚔ Boss Battle 01</span>
+            <span class="project-status">Cleared</span>
+          </div>
+          <p class="project-type">Project 1</p>
+          <h3>Hospital Website</h3>
+          <p class="project-summary">
+            A responsive orthopedic hospital website designed around a real client's needs.
+          </p>
+          <div class="required-skills">
+            <span>HTML ✓</span><span>CSS ✓</span><span>Responsive ✓</span><span>Client UX ✓</span>
+          </div>
+          <dl class="boss-stats">
+            <div>
+              <dt>Difficulty</dt>
+              <dd><span aria-hidden="true">★★☆☆☆</span><span class="sr-only">Two out of five stars</span></dd>
+            </div>
+            <div><dt>Reward</dt><dd>+2,000 XP</dd></div>
+          </dl>
+          <button class="secondary-button project-trigger" type="button" data-project="hospital">
+            View Project
+          </button>
+        </article>
+
+        <article class="boss-card reveal">
+          <div class="boss-topline">
+            <span>⚔ Boss Battle 02</span>
+            <span class="project-status">Cleared</span>
+          </div>
+          <p class="project-type">Project 2</p>
+          <h3>CPA Progress Tracker</h3>
+          <p class="project-summary">
+            A study-planning dashboard built around my own CPA preparation workflow.
+          </p>
+          <div class="required-skills">
+            <span>JavaScript ✓</span><span>DOM ✓</span><span>localStorage ✓</span><span>Debugging ✓</span>
+          </div>
+          <dl class="boss-stats">
+            <div>
+              <dt>Difficulty</dt>
+              <dd><span aria-hidden="true">★★★★☆</span><span class="sr-only">Four out of five stars</span></dd>
+            </div>
+            <div><dt>Reward</dt><dd>+3,000 XP</dd></div>
+          </dl>
+          <button class="secondary-button project-trigger" type="button" data-project="cpa">
+            View Project
+          </button>
+        </article>
+
+        <article class="boss-card reveal">
+          <div class="boss-topline">
+            <span>⚔ Boss Battle 03</span>
+            <span class="project-status">Cleared</span>
+          </div>
+          <p class="project-type">Project 3</p>
+          <h3>Pokémon Face Match</h3>
+          <p class="project-summary">
+            An API-powered experience for matching a selfie with Pokémon and exploring live data.
+          </p>
+          <div class="required-skills">
+            <span>APIs ✓</span><span>JSON ✓</span><span>JavaScript ✓</span><span>DOM ✓</span>
+          </div>
+          <dl class="boss-stats">
+            <div>
+              <dt>Difficulty</dt>
+              <dd><span aria-hidden="true">★★★★☆</span><span class="sr-only">Four out of five stars</span></dd>
+            </div>
+            <div><dt>Reward</dt><dd>+3,250 XP</dd></div>
+          </dl>
+          <button class="secondary-button project-trigger" type="button" data-project="pokemon">
+            View Project
+          </button>
+        </article>
+
+        <article class="boss-card final-boss reveal">
+          <div class="boss-topline">
+            <span>♛ Final Boss</span>
+            <span class="project-status">Cleared</span>
+          </div>
+          <p class="project-type">Final Project</p>
+          <h3>CreatorPilot</h3>
+          <p class="project-summary">
+            An AI YouTube production studio that combines reference analysis, research,
+            scriptwriting, originality review, storyboards, and model evaluation.
+          </p>
+          <div class="required-skills">
+            <span>HTML ✓</span><span>CSS ✓</span><span>JavaScript ✓</span><span>APIs ✓</span>
+            <span>Express ✓</span><span>AI Agents ✓</span>
+          </div>
+          <dl class="boss-stats">
+            <div>
+              <dt>Difficulty</dt>
+              <dd><span aria-hidden="true">★★★★★</span><span class="sr-only">Five out of five stars</span></dd>
+            </div>
+            <div><dt>Reward</dt><dd>+5,000 XP</dd></div>
+          </dl>
+          <button class="secondary-button project-trigger" type="button" data-project="creatorpilot">
+            Inspect Final Build
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <section class="reflection section-shell" id="reflection" aria-labelledby="reflection-title">
+      <div class="section-heading reveal">
+        <div>
+          <div class="section-label">
+            <span>04</span>
+            <p>Character Stats</p>
+          </div>
+          <h2 id="reflection-title">Then vs. Now</h2>
+        </div>
+        <p>
+          These bars represent my personal confidence and growth, not an objective
+          measurement of mastery.
+        </p>
+      </div>
+
+      <div class="comparison-panel reveal">
+        <div class="confidence-card confidence-then">
+          <div class="comparison-title">
+            <span>Then</span>
+            <strong>Week 1</strong>
+          </div>
+          <div class="confidence-list">
+            <div><span>HTML</span><i class="confidence-20"></i><b>02</b></div>
+            <div><span>CSS</span><i class="confidence-10"></i><b>01</b></div>
+            <div><span>JavaScript</span><i class="confidence-0"></i><b>00</b></div>
+            <div><span>APIs</span><i class="confidence-0"></i><b>00</b></div>
+            <div><span>GitHub</span><i class="confidence-15"></i><b>01</b></div>
+          </div>
+        </div>
+
+        <div class="versus-mark" aria-hidden="true"><span>VS</span></div>
+
+        <div class="confidence-card confidence-now">
+          <div class="comparison-title">
+            <span>Now</span>
+            <strong>Week 10</strong>
+          </div>
+          <div class="confidence-list">
+            <div><span>HTML</span><i class="confidence-100"></i><b>10</b></div>
+            <div><span>CSS</span><i class="confidence-90"></i><b>09</b></div>
+            <div><span>JavaScript</span><i class="confidence-80"></i><b>08</b></div>
+            <div><span>APIs</span><i class="confidence-70"></i><b>07</b></div>
+            <div><span>GitHub</span><i class="confidence-80"></i><b>08</b></div>
+          </div>
+        </div>
+      </div>
+
+      <article class="final-reflection reveal">
+        <p class="overline">Final Reflection</p>
+        <blockquote>
+          “I started the course by asking how a webpage appears online. By Week 10,
+          I was deciding how a frontend, backend, APIs, and several AI agents should
+          work together.”
+        </blockquote>
+        <p>
+          My biggest change was learning to make my own decisions. Early in the
+          course, I used AI mainly to generate pages and explain code. Over time, I
+          learned to compare references, reject weak designs, test generated code,
+          debug failures, and think about security, reliability, model quality, and
+          cost. I now see web development as an iterative process: understand the
+          problem, build a clear version, test it, and improve it with evidence.
+        </p>
       </article>
     </section>
 
-    <div class="section-heading" id="timeline">
-      <div>
-        <p class="eyebrow">Week by week</p>
-        <h2>The timeline</h2>
-      </div>
-      <p>
-        Filter the timeline to see how the work moved from fundamentals to
-        JavaScript and then to API-powered AI projects.
+    <section class="quest-complete" id="quest-complete" aria-labelledby="quest-title">
+      <div class="quest-glow" aria-hidden="true"></div>
+      <p class="kicker reveal">Main quest completed</p>
+      <h2 id="quest-title" class="reveal">Quest complete.</h2>
+      <p class="quest-subtitle reveal">
+        10 weeks completed.<br>
+        <span>But the skill tree isn't finished yet.</span>
       </p>
-    </div>
 
-    <div class="filter-bar" role="group" aria-label="Filter weeks by learning stage">
-      <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All weeks</button>
-      <button class="filter-button" type="button" data-filter="foundation" aria-pressed="false">Foundations</button>
-      <button class="filter-button" type="button" data-filter="javascript" aria-pressed="false">JavaScript</button>
-      <button class="filter-button" type="button" data-filter="ai" aria-pressed="false">APIs &amp; AI</button>
-    </div>
+      <ul class="future-skills reveal">
+        <li><span>⚿</span><strong>React</strong><small>Locked</small></li>
+        <li><span>⚿</span><strong>Databases</strong><small>Locked</small></li>
+        <li><span>⚿</span><strong>TypeScript</strong><small>Locked</small></li>
+        <li><span>⚿</span><strong>Automated Testing</strong><small>Locked</small></li>
+      </ul>
 
-    <div class="timeline">
-      <article class="week-card" data-stage="foundation">
-        <span class="week-number" aria-hidden="true">01</span>
-        <p class="week-meta">May 18–20 · Starting point</p>
-        <h3>Building my first web presence</h3>
-        <ul>
-          <li>Created my personal website and course repository.</li>
-          <li>Learned the roles of HTML, README files, Markdown, and GitHub Pages.</li>
-          <li>Used ChatGPT to organize the repository and understand a basic HTML page.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">HTML · GitHub</span>
-          <a class="log-link" href="logs/wk01.md">Read Week 1 log →</a>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="foundation">
-        <span class="week-number" aria-hidden="true">02</span>
-        <p class="week-meta">May 25–29 · Page structure</p>
-        <h3>Adding meaning and personality</h3>
-        <ul>
-          <li>Built <code>hello.html</code> and <code>about-me.html</code>.</li>
-          <li>Worked with semantic elements and both local and external images.</li>
-          <li>Kept AI suggestions simple, then replaced generic details with my own content.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">Semantic HTML · Images</span>
-          <a class="log-link" href="logs/wk02.md">Read Week 2 log →</a>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="foundation">
-        <span class="week-number" aria-hidden="true">03</span>
-        <p class="week-meta">June 1–5 · Project 1 discovery</p>
-        <h3>Designing for a real client</h3>
-        <ul>
-          <li>Interviewed my father as the client for the Project 1 hospital website.</li>
-          <li>Reviewed the existing English site and identified content and design problems.</li>
-          <li>Learned that better prompts and stronger references produce more useful AI designs.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">Planning · Client needs</span>
-          <a class="log-link" href="logs/wk03.md">Read Week 3 log →</a>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="foundation">
-        <span class="week-number" aria-hidden="true">04</span>
-        <p class="week-meta">June 8–13 · Building Project 1</p>
-        <h3>Moving from the plan to a live website</h3>
-        <ul>
-          <li>Started coding and deployed the hospital website as Project 1.</li>
-          <li>Reworked my personal site into a modern geopolitics blog concept.</li>
-          <li>Learned responsive design, Flexbox, Grid, viewport settings, and form methods.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">CSS · Responsive design</span>
-          <a class="log-link" href="logs/wk04.md">Read Week 4 log →</a>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="javascript">
-        <span class="week-number" aria-hidden="true">05</span>
-        <p class="week-meta">June 15–19 · Presenting Project 1</p>
-        <h3>Understanding the DOM</h3>
-        <ul>
-          <li>Reviewed JavaScript demos and presented the Project 1 hospital site to the client.</li>
-          <li>Learned how the browser creates a DOM tree that JavaScript can change.</li>
-          <li>Explored <code>Math.random()</code>, <code>parseInt()</code>, and <code>classList</code> with AI.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">DOM · Client feedback</span>
-          <a class="log-link" href="logs/wk05.md">Read Week 5 log →</a>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="javascript">
-        <span class="week-number" aria-hidden="true">06</span>
-        <p class="week-meta">June 22–26 · Project 2 begins</p>
-        <h3>Turning JavaScript into a useful study tool</h3>
-        <ul>
-          <li>Created the CPA Progress Tracker as Project 2 around my own study needs.</li>
-          <li>Practiced inputs, number conversion, conditions, logical operators, and localStorage.</li>
-          <li>Used AI to plan the dashboard, refine its design, and persist study data.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">JavaScript · localStorage</span>
-          <div>
-            <a class="log-link" href="logs/wk06.md">Week 6 log</a>
-            ·
-            <a
-              class="log-link"
-              href="https://youngseolee736.github.io/CPA-progress-tracker/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Project 2 · Live ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="javascript">
-        <span class="week-number" aria-hidden="true">07</span>
-        <p class="week-meta">June 29–July 5 · Completing Project 2</p>
-        <h3>Finishing, debugging, and presenting</h3>
-        <ul>
-          <li>Finished and presented the CPA Progress Tracker as Project 2.</li>
-          <li>Added persistent progress, a custom date picker, and study-planning improvements.</li>
-          <li>Built a temperature converter and an upgraded discount calculator.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">Debugging · Events</span>
-          <div>
-            <a class="log-link" href="logs/wk07.md">Week 7 log</a>
-            ·
-            <a
-              class="log-link"
-              href="https://youngseolee736.github.io/CPA-progress-tracker/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Project 2 · Live ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="ai">
-        <span class="week-number" aria-hidden="true">08</span>
-        <p class="week-meta">July 6–12 · Project 3 planning</p>
-        <h3>Planning an API-powered project</h3>
-        <ul>
-          <li>Created an AI chatbot with the course API.</li>
-          <li>Learned how APIs exchange JSON data and why keys belong in environment variables.</li>
-          <li>Planned Pokémon Face Match as Project 3 and selected PokéAPI as its data source.</li>
-          <li>Considered API failure states, request limits, and secure key handling.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">API · JSON · Security</span>
-          <div>
-            <a class="log-link" href="logs/wk08.md">Week 8 log</a>
-            ·
-            <a
-              class="log-link"
-              href="https://youngseolee736.github.io/pokemon/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >View Project 3 ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="ai">
-        <span class="week-number" aria-hidden="true">09</span>
-        <p class="week-meta">July 13–19 · Project 3 + final project</p>
-        <h3>Completing Pokémon and starting CreatorPilot</h3>
-        <ul>
-          <li>Built and deployed Pokémon Face Match as my API-based Project 3.</li>
-          <li>Used PokéAPI for live Pokémon search, type filters, details, matching, and a battle activity.</li>
-          <li>Shifted the project concept from RelocateAI to CreatorPilot.</li>
-          <li>Connected a Node.js and Express backend and worked with YouTube transcripts.</li>
-          <li>Separated analysis, research, writing, originality, and storyboard work into AI agents.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">Express · AI agents</span>
-          <div>
-            <a class="log-link" href="logs/wk09.md">Week 9 log</a>
-            ·
-            <a
-              class="log-link"
-              href="https://youngseolee736.github.io/pokemon/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Project 3</a>
-            ·
-            <a
-              class="log-link"
-              href="https://creatorpilot-95k2.onrender.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Live project ↗</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="week-card" data-stage="ai">
-        <span class="week-number" aria-hidden="true">10</span>
-        <p class="week-meta">July 20–26 · Final project expansion</p>
-        <h3>Balancing quality, freedom, and cost</h3>
-        <ul>
-          <li>Added research, multi-reference analysis, and Standard and Deep modes.</li>
-          <li>Used OpenRouter to compare GPT and Gemini outputs through a Judge system.</li>
-          <li>Learned that strict agent contracts can hurt quality and strong models can raise costs quickly.</li>
-        </ul>
-        <div class="week-footer">
-          <span class="tag">OpenRouter · Evaluation</span>
-          <div>
-            <a class="log-link" href="logs/wk10.md">Week 10 log</a>
-            ·
-            <a
-              class="log-link"
-              href="https://creatorpilot-95k2.onrender.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Live project ↗</a>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <div class="section-heading" id="reflection">
-      <div>
-        <p class="eyebrow">Looking back</p>
-        <h2>My main takeaway</h2>
-      </div>
-      <p>
-        The biggest change was not just learning more technology. It was learning
-        how to move from an idea to a tested product while making my own decisions.
-      </p>
-    </div>
-
-    <section class="reflection">
-      <article>
-        <h3>How I changed as a builder</h3>
-        <p>
-          At first, I used AI mainly to generate pages and explain unfamiliar code.
-          Over time, I became more selective: I compared references, rejected weak
-          designs, tested generated code, fixed problems, and considered security,
-          reliability, model quality, and cost.
-        </p>
-      </article>
-      <article>
-        <h3>Projects that show the journey</h3>
-        <p>
-          My work progressed from a client website to a JavaScript study tracker,
-          an API-powered Pokémon project, and finally a multi-agent
-          content-creation workflow.
-        </p>
-        <div class="project-links">
-          <a href="https://youngseolee736.github.io/mp1-hospital/">Hospital Site · Project 1 ↗</a>
-          <a
-            href="https://youngseolee736.github.io/CPA-progress-tracker/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >CPA Tracker · Project 2 ↗</a>
-          <a
-            href="https://youngseolee736.github.io/pokemon/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Pokémon · Project 3 ↗</a>
-          <a
-            href="https://creatorpilot-95k2.onrender.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >CreatorPilot · Final Project ↗</a>
-        </div>
-      </article>
+      <a class="primary-button reveal" href="#top">Return to Start <span aria-hidden="true">↑</span></a>
     </section>
   </main>
 
-  <footer class="journey-footer">
-    <p>
-      Created by Young Seo Lee for OIM3690 ·
-      <a href="https://github.com/youngseolee736/oim3690">View the course repository</a>
-    </p>
+  <footer>
+    <p>Young Seo Lee · OIM3690 · Summer 2026</p>
+    <p>Built with HTML, CSS, JavaScript, and several carefully defeated bugs.</p>
   </footer>
 
-  <script>
-    const filterButtons = document.querySelectorAll("[data-filter]");
-    const weekCards = document.querySelectorAll("[data-stage]");
+  <dialog class="detail-modal" id="skill-modal" aria-labelledby="skill-modal-title">
+    <button class="modal-close" type="button" aria-label="Close skill details">×</button>
+    <div class="modal-accent"></div>
+    <div class="modal-content">
+      <p class="modal-kicker" id="skill-modal-kicker">Skill Unlocked</p>
+      <h2 id="skill-modal-title">Skill details</h2>
+      <div class="modal-stats">
+        <div><span>Unlocked</span><strong id="skill-modal-week"></strong></div>
+        <div><span>XP Earned</span><strong id="skill-modal-xp"></strong></div>
+        <div><span>Difficulty</span><strong id="skill-modal-difficulty"></strong></div>
+      </div>
+      <div class="modal-section">
+        <h3>What I learned</h3>
+        <ul id="skill-modal-learned"></ul>
+      </div>
+      <div class="modal-callout">
+        <span>Boss Battle</span>
+        <strong id="skill-modal-boss"></strong>
+      </div>
+      <div class="modal-section">
+        <h3>Used in</h3>
+        <p id="skill-modal-used"></p>
+      </div>
+      <div class="modal-section">
+        <h3>My reflection</h3>
+        <p id="skill-modal-reflection"></p>
+      </div>
+    </div>
+  </dialog>
 
-    filterButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const selectedFilter = button.dataset.filter;
+  <dialog class="detail-modal project-modal" id="project-modal" aria-labelledby="project-modal-title">
+    <button class="modal-close" type="button" aria-label="Close project details">×</button>
+    <div class="modal-accent"></div>
+    <div class="modal-content">
+      <p class="modal-kicker" id="project-modal-kicker">Boss Battle</p>
+      <h2 id="project-modal-title">Project details</h2>
+      <p class="project-modal-summary" id="project-modal-summary"></p>
+      <div class="project-preview" id="project-preview" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <strong></strong>
+      </div>
+      <div class="modal-section">
+        <h3>Technologies</h3>
+        <div class="modal-tags" id="project-modal-technologies"></div>
+      </div>
+      <div class="modal-two-column">
+        <div class="modal-section">
+          <h3>Biggest challenge</h3>
+          <p id="project-modal-challenge"></p>
+        </div>
+        <div class="modal-section">
+          <h3>Lesson learned</h3>
+          <p id="project-modal-lesson"></p>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <a class="primary-button" id="project-live-link" href="#" target="_blank" rel="noopener noreferrer">
+          View Live Website ↗
+        </a>
+        <a class="text-link" id="project-github-link" href="#" target="_blank" rel="noopener noreferrer">
+          View GitHub
+        </a>
+      </div>
+    </div>
+  </dialog>
 
-        filterButtons.forEach((filterButton) => {
-          filterButton.setAttribute(
-            "aria-pressed",
-            String(filterButton === button)
-          );
-        });
+  <aside class="achievement-toast" id="achievement-toast" role="status" aria-live="polite">
+    <span>🏆</span>
+    <div>
+      <small>Achievement unlocked</small>
+      <strong id="achievement-title">Skill Tree Discovered</strong>
+      <p id="achievement-copy">Fifteen skills. Zero shortcuts.</p>
+    </div>
+  </aside>
 
-        weekCards.forEach((card) => {
-          card.hidden =
-            selectedFilter !== "all" &&
-            card.dataset.stage !== selectedFilter;
-        });
-      });
-    });
-  </script>
+  <script src="js/learning-journey.js"></script>
 </body>
 </html>
