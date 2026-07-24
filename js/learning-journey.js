@@ -288,8 +288,8 @@ const projectData = {
       "The largest challenge was coordinating several unpredictable AI stages while controlling context, originality, response time, API failures, and model cost.",
     lesson:
       "A complex AI workflow improves through testing and tradeoffs. More rules or a more expensive model do not automatically produce a better result.",
-    live: "https://creatorpilot-95k2.onrender.com/",
-    github: "",
+    live: "",
+    github: "https://github.com/youngseolee736/creatorpilot",
     color: "#b796ff"
   }
 };
@@ -446,7 +446,8 @@ function populateProjectModal(projectId) {
 
   const liveLink = document.querySelector("#project-live-link");
   const githubLink = document.querySelector("#project-github-link");
-  liveLink.href = project.live;
+  liveLink.hidden = !project.live;
+  liveLink.href = project.live || "#";
   githubLink.hidden = !project.github;
   githubLink.href = project.github || "#";
 }
